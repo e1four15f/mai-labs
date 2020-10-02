@@ -523,19 +523,14 @@ socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
 
 [[package]]
 category = "main"
-description = "Python модуль для создания скриптов для социальной сети Вконтакте (vk.com API wrapper)"
-name = "vk-api"
+description = "vk.com API Python wrapper"
+name = "vk"
 optional = false
 python-versions = "*"
-version = "11.9.0"
+version = "2.0.2"
 
 [package.dependencies]
-requests = "*"
-six = "*"
-
-[package.extras]
-vkaudio = ["beautifulsoup4"]
-vkstreaming = ["websocket-client"]
+requests = ">=2.8,<3.0"
 
 [[package]]
 category = "dev"
@@ -567,7 +562,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "11bb00102a4a5558f7207c401a8fdf21545d4900ef37151734305674e122713f"
+content-hash = "8f20a7165a41ddde2610c4d310137e3af40b2bb49f1d45b9c213b1a7c2b89c10"
 lock-version = "1.0"
 python-versions = "^3.6.1"
 
@@ -875,8 +870,8 @@ urllib3 = [
     {file = "urllib3-1.25.10-py2.py3-none-any.whl", hash = "sha256:e7983572181f5e1522d9c98453462384ee92a0be7fac5f1413a1e35c56cc0461"},
     {file = "urllib3-1.25.10.tar.gz", hash = "sha256:91056c15fa70756691db97756772bb1eb9678fa585d9184f24534b100dc60f4a"},
 ]
-vk-api = [
-    {file = "vk_api-11.9.0.tar.gz", hash = "sha256:68ffc7f12485d775b822925451fcb6c1375372d9095cdac586b5a6b6d23778a9"},
+vk = [
+    {file = "vk-2.0.2.tar.gz", hash = "sha256:57bde87a95c57b5a9fa1761ad8e5a8a36beeb79b096346cfe5fbcd7fc56cca26"},
 ]
 wcwidth = [
     {file = "wcwidth-0.2.5-py2.py3-none-any.whl", hash = "sha256:beb4802a9cebb9144e99086eff703a642a13d6a0052920003a230f3294bbe784"},

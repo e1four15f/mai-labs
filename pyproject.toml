@@ -9,11 +9,11 @@ python = "^3.6.1"
 pandas = "^1.1.2"
 numpy = "^1.19.2"
 requests = "^2.24.0"
-vk-api = "^11.9.0"
 networkx = "^2.5"
 tqdm = "^4.49.0"
 plotly = "^4.10.0"
 scipy = "^1.5.2"
+vk = "^2.0.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.3"
