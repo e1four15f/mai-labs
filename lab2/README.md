@@ -1,4 +1,9 @@
 # Лабораторная работа 2
+![version](https://img.shields.io/badge/Python-3.8-blue)
+![version](https://img.shields.io/badge/Pandas-1.1.2-yellowgreen)
+![version](https://img.shields.io/badge/networkx-2.5-red)
+![version](https://img.shields.io/badge/plotly-4.10.0-9cf)
+![version](https://img.shields.io/badge/vk-2.0-orange)
 
 ## Задание
 - Собрать информацию о друзьях в vk
