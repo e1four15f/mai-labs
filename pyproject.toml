@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "mai-labs"
+version = "0.1.0"
+description = "The set of dependencies needed to recreate the lab results"
+authors = ["Brigada número cuatro"]
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+pandas = "^1.1.2"
+numpy = "^1.19.2"
+requests = "^2.24.0"
+vk-api = "^11.9.0"
+networkx = "^2.5"
+tqdm = "^4.49.0"
+plotly = "^4.10.0"
+scipy = "^1.5.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+mypy = "^0.782"
+flake8 = "^3.8.3"
+black = "^19.10b0"
+isort = "^4.3.21"
+pylint = "^2.6.0"
+unify = "^0.5"
+
+[build-system]
+requires = ["poetry>=1.0.9"]
+build-backend = "poetry.masonry.api"
