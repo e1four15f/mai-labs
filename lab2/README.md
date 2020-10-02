@@ -24,4 +24,4 @@ ID студентов группы в сети vk
 - Eigenvector centrality (центральность собственного вектора)
 - Betweenness centrality (центральность по посредничеству)
 
-![Alt Text](static_graph.png)
+![Alt Text](static__graph.png)
