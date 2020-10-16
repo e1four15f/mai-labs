@@ -1,4 +1,7 @@
 # Лабораторная работа 3
+![version](https://img.shields.io/badge/Python-3.8-blue)
+![version](https://img.shields.io/badge/numpy-1.19.2-yellowgreen)
+
 
 ## Задание
 Реализовать модель Шеллинга (модель расовой сегрегации)
