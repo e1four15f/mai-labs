@@ -1,28 +1,46 @@
 from typing import List
 
+import numpy as np
 from lab4.circle import Circle, Point
 
 
-def _ritter_initial_ball(points: List[Point]) -> Circle:
-    point_1 = points[0]
-    point_2 = point_1.find_farthest_from(points)
-    point_3 = point_2.find_farthest_from(points)
+def smallest_enclosing_circle(points: List[Point]) -> Circle:
+    if not len(points):
+        raise Exception('No points passed to function')
+    if len(points) == 1:
+        return Circle(center=points[0], radius=0)
 
-    diameter = point_2.distance_to(point_3)
-    center = (point_2 + point_3) / 2
+    np.random.shuffle(points)
+    circle = Circle.from_two_points(points[0], points[1])
 
-    return Circle(center=center, radius=diameter / 2)
+    for i in range(2, len(points)):
+        if not circle.is_point_inside(points[i]):
+            circle = _smallest_enclosing_circle_one_boundary_point(
+                points[:i], points[i]
+            )
+    return circle
 
 
-def find_smallest_circle(points: List[Point]) -> Circle:
-    bounding_circle = _ritter_initial_ball(points)
+def _smallest_enclosing_circle_one_boundary_point(
+    points: List[Point], p: Point
+) -> Circle:
+    np.random.shuffle(points)
+    circle = Circle.from_two_points(points[0], p)
 
-    for point in points:
-        distance = point.distance_to(bounding_circle.center)
-        alpha = 1
-        while distance > bounding_circle.radius:
-            bounding_circle.radius += distance / alpha
-            bounding_circle.center += point / alpha
-            alpha *= 2
+    for i in range(1, len(points)):
+        if not circle.is_point_inside(points[i]):
+            circle = _smallest_enclosing_circle_two_boundary_points(
+                points[:i], p, points[i]
+            )
+    return circle
 
-    return bounding_circle
+
+def _smallest_enclosing_circle_two_boundary_points(
+    points: List[Point], p: Point, q: Point
+) -> Circle:
+    circle = Circle.from_two_points(p, q)
+
+    for i in range(len(points)):
+        if not circle.is_point_inside(points[i]):
+            circle = Circle.from_three_points(p, q, points[i])
+    return circle

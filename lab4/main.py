@@ -4,7 +4,8 @@ from typing import List
 
 import numpy as np
 from lab4.circle import Point
-from lab4.smallest_enclosing_distance import find_smallest_circle
+from lab4.ritter_bounding_sphere import find_smallest_circle
+from lab4.smallest_enclosing_distance import smallest_enclosing_circle
 from lab4.visualize import draw_circle_points
 
 
@@ -44,12 +45,36 @@ if __name__ == '__main__':
         default=60,
         help='Number of generated points',
     )
+    parser.add_argument(
+        '-s',
+        '--seed',
+        type=int,
+        default=None,
+        help='Seed for random points generation, by default without fixed seed',
+    )
+    parser.add_argument(
+        '-a',
+        '--algorithm',
+        type=str,
+        default='enclosing',
+        help='Algorithm for finding smallest circle [enclosing, ritter]',
+    )
     args = parser.parse_args()
+    if args.seed:
+        np.random.seed(seed=args.seed)
 
     if args.file:
         points = _points_from_file(args.file)
     else:
         points = _generate_points(number_of_points=args.number_of_points)
 
-    circle = find_smallest_circle(points)
+    if args.algorithm == 'ritter':
+        circle = find_smallest_circle(points)
+    elif args.algorithm == 'enclosing':
+        circle = smallest_enclosing_circle(points)
+    else:
+        raise Exception(
+            f'Unknown algorithm "{args.algorithm}", available algorithm [enclosing, ritter]'
+        )
+
     draw_circle_points(circle, points)
