@@ -1,3 +1,5 @@
+import argparse
+import pathlib
 from typing import List
 
 import numpy as np
@@ -14,7 +16,40 @@ def _generate_points(
     return [Point(x, y) for x, y in zip(x_coordinates, y_coordinates)]
 
 
+def _points_from_file(path: pathlib.Path) -> List[Point]:
+    points = []  # noqa
+    with path.open() as file:
+        lines = file.read().split('\n')
+        for line in lines:
+            x, y = line.split(sep=',')
+            points.append(Point(x=float(x), y=float(y)))
+    return points
+
+
 if __name__ == '__main__':
-    points = _generate_points(number_of_points=5)
+    parser = argparse.ArgumentParser(
+        description='Smallest enclosing distance algorithm'
+    )
+    parser.add_argument(
+        '-f',
+        '--file',
+        type=pathlib.Path,  # noqa
+        default=None,
+        help='Path to file with points coordinates in comma separated style',
+    )
+    parser.add_argument(
+        '-n',
+        '--number_of_points',
+        type=int,
+        default=60,
+        help='Number of generated points',
+    )
+    args = parser.parse_args()
+
+    if args.file:
+        points = _points_from_file(args.file)
+    else:
+        points = _generate_points(number_of_points=args.number_of_points)
+
     circle = find_smallest_circle(points)
     draw_circle_points(circle, points)
