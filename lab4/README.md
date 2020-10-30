@@ -16,10 +16,10 @@
 
 Результаты запуска программы:
 - 5 исходных точек
-![Alt Text](resources/img1.png)
+![Alt Text](resources/example_5_points.png)
 - 10 исходных точек
-![Alt Text](resources/img2.png)
+![Alt Text](resources/example_10_points.png)
 - 50 исходных точек
-![Alt Text](resources/img3.png)
+![Alt Text](resources/example_50_points.png)
 - 100 исходных точек
-![Alt Text](resources/img4.png)
+![Alt Text](resources/example_100_points.png)
