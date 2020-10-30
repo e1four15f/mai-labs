@@ -18,6 +18,9 @@ class Point:
     def __truediv__(self, num: float) -> 'Point':
         return Point(x=self.x / num, y=self.y / num)
 
+    def __str__(self) -> str:
+        return f'({self.x:.2f}, {self.y:.2f})'
+
     def to_numpy(self) -> np.ndarray:
         return np.array([self.x, self.y])
 
@@ -32,3 +35,6 @@ class Point:
 class Circle:
     center: Point
     radius: float
+
+    def __str__(self) -> str:
+        return f'Circle(center={self.center}, radius={self.radius:.2f})'

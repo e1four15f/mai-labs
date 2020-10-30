@@ -19,8 +19,11 @@ def draw_circle_points(circle: Circle, points: List[Point]):
         plt.scatter(point.x, point.y, c='deeppink')
     plt.scatter(circle.center.x, circle.center.y, c='blue', marker='x')
 
-    circle = plt.Circle((circle.center.x, circle.center.y), circle.radius, fill=False)
-    axis.add_artist(circle)
+    circle_plot = plt.Circle(
+        (circle.center.x, circle.center.y), circle.radius, fill=False
+    )
+    axis.add_artist(circle_plot)
 
+    plt.title(circle)
     plt.gca().set_aspect('equal', adjustable='box')
     plt.show()
