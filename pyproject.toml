@@ -14,6 +14,7 @@ tqdm = "^4.49.0"
 plotly = "^4.10.0"
 scipy = "^1.5.2"
 vk = "^2.0.2"
+matplotlib = "^3.3.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.3"
