@@ -29,7 +29,7 @@ def _points_from_file(path: pathlib.Path) -> List[Point]:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Smallest enclosing distance algorithm'
+        description='Find smallest circle'
     )
     parser.add_argument(
         '-f',
