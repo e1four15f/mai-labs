@@ -5,7 +5,7 @@ from lab4.circle import Circle, Point
 
 
 def smallest_enclosing_circle(points: List[Point]) -> Circle:
-    if not len(points):
+    if not points:
         raise Exception('No points passed to function')
     if len(points) == 1:
         return Circle(center=points[0], radius=0)
@@ -22,25 +22,25 @@ def smallest_enclosing_circle(points: List[Point]) -> Circle:
 
 
 def _smallest_enclosing_circle_one_boundary_point(
-    points: List[Point], p: Point
+    points: List[Point], p_i: Point
 ) -> Circle:
     np.random.shuffle(points)
-    circle = Circle.from_two_points(points[0], p)
+    circle = Circle.from_two_points(points[0], p_i)
 
     for i in range(1, len(points)):
         if not circle.is_point_inside(points[i]):
             circle = _smallest_enclosing_circle_two_boundary_points(
-                points[:i], p, points[i]
+                points[:i], p_i, points[i]
             )
     return circle
 
 
 def _smallest_enclosing_circle_two_boundary_points(
-    points: List[Point], p: Point, q: Point
+    points: List[Point], p_i: Point, p_j: Point
 ) -> Circle:
-    circle = Circle.from_two_points(p, q)
+    circle = Circle.from_two_points(p_i, p_j)
 
-    for i in range(len(points)):
-        if not circle.is_point_inside(points[i]):
-            circle = Circle.from_three_points(p, q, points[i])
+    for point in points:
+        if not circle.is_point_inside(point):
+            circle = Circle.from_three_points(p_i, p_j, point)
     return circle

@@ -3,7 +3,7 @@ from typing import List
 
 import numpy as np
 
-EPSILON = 1e-3
+EPSILON = 1e-12
 
 
 @dataclass
@@ -42,57 +42,42 @@ class Circle:
         return f'Circle(center={self.center}, radius={self.radius:.2f})'
 
     @classmethod
-    def from_two_points(cls, point_i: Point, point_j: Point) -> 'Circle':
-        return cls(
-            center=(point_i + point_j) / 2, radius=point_i.distance_to(point_j) / 2
-        )
+    def from_two_points(cls, p_i: Point, p_j: Point) -> 'Circle':
+        return cls(center=(p_i + p_j) / 2, radius=p_i.distance_to(p_j) / 2)
 
     @classmethod
-    def from_three_points(
-        cls, point_p: Point, point_q: Point, point_z: Point
-    ) -> 'Circle':
-        # TODO wtf
+    def from_three_points(cls, p_i: Point, p_j: Point, p_k: Point) -> 'Circle':
         sides = sorted(
             [
-                (point_p.distance_to(point_q), point_p, point_q),
-                (point_q.distance_to(point_z), point_q, point_z),
-                (point_p.distance_to(point_z), point_p, point_z),
+                (p_i.distance_to(p_j), p_i, p_j),
+                (p_j.distance_to(p_k), p_j, p_k),
+                (p_i.distance_to(p_k), p_i, p_k),
             ]
         )
-        # TODO what distance
         distance = sides[2][0] ** 2 - (sides[0][0] ** 2 + sides[1][0] ** 2)
         if distance < EPSILON:
-            return _circumcircle(point_p, point_q, point_z)
+            return _circumcircle(p_i, p_j, p_k)
         return cls.from_two_points(sides[2][1], sides[2][2])
 
     def is_point_inside(self, point: Point) -> bool:
         return self.center.distance_to(point) <= self.radius + EPSILON
 
 
-def _circumcircle(point_i: Point, point_j: Point, point_k: Point) -> Circle:
-    # TODO numpy?
-    d = (
-        point_i.x * (point_j.y - point_k.y)
-        + point_j.x * (point_k.y - point_i.x)
-        + point_k.x * (point_i.y - point_j.y)
-    ) * 2
+def _circumcircle(p_i: Point, p_j: Point, p_k: Point) -> Circle:
+    A = np.array([[p_k.x - p_i.x, p_k.y - p_i.y], [p_k.x - p_j.x, p_k.y - p_j.y]])
 
-    if d == 0:
-        # TODO
-        raise Exception('TODO')
+    if np.linalg.det(A) == 0:
+        raise Exception('Can\'t create Circle from given points')
 
-    x = (
-        (point_i.distance_to() ** 2) * (point_j.y - point_k.y)
-        + (point_j.distance_to() ** 2) * (point_k.y - point_i.y)
-        + (point_k.distance_to() ** 2) * (point_i.y - point_j.y)
-    ) / d
-    y = (
-        (point_i.distance_to() ** 2) * (point_k.x - point_j.x)
-        + (point_j.distance_to() ** 2) * (point_i.x - point_k.x)
-        + (point_k.distance_to() ** 2) * (point_j.x - point_i.x)
-    ) / d
+    Y = np.array(
+        [
+            (p_k.x ** 2 + p_k.y ** 2 - p_i.x ** 2 - p_i.y ** 2),
+            (p_k.x ** 2 + p_k.y ** 2 - p_j.x ** 2 - p_j.y ** 2),
+        ]
+    )
+    center_x, center_y = 0.5 * np.dot(np.linalg.inv(A), Y)
 
-    center = Point(x, y)
-    radius = center.distance_to(point_i)
+    radius = np.sqrt((center_x - p_i.x) ** 2 + (center_y - p_i.y) ** 2)
+    center = Point(center_x, center_y)
 
-    return Circle(center, radius)
+    return Circle(center, radius=radius)
