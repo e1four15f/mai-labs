@@ -3,9 +3,9 @@ import pathlib
 from typing import List
 
 import numpy as np
+from lab4.algorithms.ritter_bounding_sphere import find_smallest_circle
+from lab4.algorithms.smallest_enclosing_distance import smallest_enclosing_circle
 from lab4.circle import Point
-from lab4.ritter_bounding_sphere import find_smallest_circle
-from lab4.smallest_enclosing_distance import smallest_enclosing_circle
 from lab4.visualize import draw_circle_points
 
 
@@ -28,9 +28,7 @@ def _points_from_file(path: pathlib.Path) -> List[Point]:
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description='Find smallest circle'
-    )
+    parser = argparse.ArgumentParser(description='Find smallest circle')
     parser.add_argument(
         '-f',
         '--file',

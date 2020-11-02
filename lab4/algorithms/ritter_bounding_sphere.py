@@ -4,14 +4,10 @@ from lab4.circle import Circle, Point
 
 
 def _ritter_initial_ball(points: List[Point]) -> Circle:
-    point_1 = points[0]
-    point_2 = point_1.find_farthest_from(points)
-    point_3 = point_2.find_farthest_from(points)
-
-    diameter = point_2.distance_to(point_3)
-    center = (point_2 + point_3) / 2
-
-    return Circle(center=center, radius=diameter / 2)
+    main_point = points[0]
+    first_farthest_point = main_point.find_farthest_from(points)
+    second_farthest_point = first_farthest_point.find_farthest_from(points)
+    return Circle.from_two_points(first_farthest_point, second_farthest_point)
 
 
 def find_smallest_circle(points: List[Point]) -> Circle:
