@@ -3,6 +3,7 @@
 
 
 import pandas as pd
+import sys
 import math
 from collections import Counter
 from anytree import Node, RenderTree
@@ -40,11 +41,17 @@ def IG(feature, df, target):
 
 
 def ID3(df, target, features_to_explore, connect_node=None, i=0):
-    
+
     if df.empty:
-        return 
-    elif df[target].nunique()==1:
-        Node(f'{i+1}. class: {df[target][0]}', parent=connect_node)
+        return
+    elif (not features_to_explore) & (df[target].nunique() == 1):
+        Node(f'{i + 1}. class: {df[target][0]}', parent=connect_node)
+        return
+    elif (not features_to_explore):
+        Node(f'{i + 1}. classes: {df[target].unique()}', parent=connect_node)
+        return
+    elif df[target].nunique() == 1:
+        Node(f'{i + 1}. class: {df[target][0]}', parent=connect_node)
         return
     
     features_IG = {}
@@ -77,8 +84,10 @@ if __name__ == '__main__':
 
     df = pd.read_csv('data/group.csv').set_index('ФИО')
 
-    features_to_explore = [feature for feature in df if feature != 'target']
+    target = str(sys.argv)
 
-    decision_tree = ID3(df, 'target', features_to_explore)
+    features_to_explore = [feature for feature in df if feature != target]
+
+    decision_tree = ID3(df, target, features_to_explore)
 
 
