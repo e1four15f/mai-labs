@@ -1,0 +1,15 @@
+# Лабораторная работа 5
+![version](https://img.shields.io/badge/Python-3.8-blue)
+![version](https://img.shields.io/badge/anytree-2.8.0-yellowgreen)
+
+
+## Задание
+Реализация алгоритма ID3
+
+## Данные
+CSV датасет опроса предпочтений группы. Целевая переменная - кофе/чай
+
+## Результаты запуска программы:
+
+![Alt Text](data/decision_tree.png)
+
