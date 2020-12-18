@@ -21,8 +21,8 @@
 ![](https://blackpawn.com/texts/lightmaps/diag04.gif)
 
 ## Пример работы:
-Найдено решение
+### Найдено решение
 ![Alt Text](resource/solution.png)
-Вывод метрик
+### Вывод метрик
 ![Alt Text](resource/metrics.png)
 
