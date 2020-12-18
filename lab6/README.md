@@ -22,7 +22,7 @@
 
 ## Пример работы:
 Найдено решение
-![Alt Text](resources/solution.png)
+![Alt Text](resource/solution.png)
 Вывод метрик
-![Alt Text](resources/metrics.png)
+![Alt Text](resource/metrics.png)
 
