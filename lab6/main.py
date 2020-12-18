@@ -6,8 +6,6 @@ from typing import List
 import numpy as np
 from more_itertools import powerset
 
-container = np.zeros(shape=(7, 4), dtype=np.int)
-
 
 @dataclass
 class Box:
@@ -35,6 +33,7 @@ def solution_score(boxes: List[Box]) -> int:
 
 
 if __name__ == '__main__':
+    container = np.zeros(shape=(7, 4), dtype=np.int)
     boxes = [
         Box(3, 2, 1),
         Box(2, 1, 2),
