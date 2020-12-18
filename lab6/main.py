@@ -22,7 +22,7 @@ class Box:
         return self.area * self.weight
 
     def to_numpy(self) -> np.ndarray:
-        return np.array([[self.weight] * self.width] * self.height)
+        return np.full((self.height, self.width), fill_value=self.weight)
 
 
 def solution_score(boxes: List[Box]) -> int:
