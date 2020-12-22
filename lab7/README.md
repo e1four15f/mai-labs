@@ -1,4 +1,4 @@
-# Лабораторная работа 6
+# Лабораторная работа 7
 ![version](https://img.shields.io/badge/Python-3.8-blue)
 ![version](https://img.shields.io/badge/pandas-1.1.4-yellowgreen)
 
